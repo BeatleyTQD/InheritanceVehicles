@@ -14,7 +14,12 @@ namespace inheritance
 
         public virtual void Turn(string direction)
         {
-            Console.WriteLine($"The {MainColor} ");
+            Console.WriteLine($"The vehicle turns {direction}");
+        }
+
+        public virtual void Stop()
+        {
+            Console.WriteLine("The vehicle slowly stops");
         }
     }
 }

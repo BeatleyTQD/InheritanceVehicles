@@ -34,6 +34,14 @@ namespace inheritance
                 MaximumOccupancy = "5",
                 BatteryKWh = 52.5
             };
+
+            car.Drive();
+            car.Stop();
+            bike.Drive();
+            bike.Turn("right");
+            truck.Drive();
+            truck.Turn("left");
+            truck.Stop();
         }
     }
 }

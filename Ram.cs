@@ -14,5 +14,10 @@ namespace inheritance
         {
             Console.WriteLine($"The {MainColor} Ram roars past you like a total asshole! rrrrrrRRRR!");
         }
+
+        public override void Stop()
+        {
+            Console.WriteLine($"The {MainColor} Ram stops after 5000 meters.");
+        }
     }
 }
