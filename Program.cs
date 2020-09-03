@@ -1,47 +1,70 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace inheritance
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
-
-            Cessna plane = new Cessna()
+            Zero fxs = new Zero();
+            fxs.CurrentChargePercentage = 12;
+            Zero fx = new Zero();
+            fx.CurrentChargePercentage = 87;
+            Tesla modelS = new Tesla();
+            modelS.CurrentChargePercentage = 99;
+            List<IElectric> electricVehicles = new List<IElectric>()
             {
-                MainColor = "purple",
-                MaximumOccupancy = "20",
-                FuelCapacity = 20.5
+                fx,
+                fxs,
+                modelS
             };
 
-            Ram truck = new Ram()
+            Console.WriteLine("Electric Vehicles");
+            foreach (IElectric ev in electricVehicles)
             {
-                MainColor = "black",
-                MaximumOccupancy = "6",
-                FuelCapacity = 10.5
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+
+            foreach (IElectric ev in electricVehicles)
+            {
+                // This should charge the vehicle to 100%
+                ev.ChargeBattery();
+            }
+
+            foreach (IElectric ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+
+            /***********************************************/
+
+            Ram ram = new Ram();
+            ram.CurrentTankPercentage = 43;
+            Cessna cessna150 = new Cessna();
+            cessna150.CurrentTankPercentage = 87;
+            List<IGas> gasVehicles = new List<IGas>()
+            {
+                ram,
+                cessna150
             };
 
-            Zero bike = new Zero()
+            Console.WriteLine("Gas Vehicles");
+            foreach (IGas gv in gasVehicles)
             {
-                MainColor = "white",
-                MaximumOccupancy = "2",
-                BatteryKWh = 2.5
-            };
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
 
-            Tesla car = new Tesla()
+            foreach (IGas gv in gasVehicles)
             {
-                MainColor = "red",
-                MaximumOccupancy = "5",
-                BatteryKWh = 52.5
-            };
+                // This should completely refuel the gas tank
+                gv.RefuelTank();
+            }
 
-            car.Drive();
-            car.Stop();
-            bike.Drive();
-            bike.Turn("right");
-            truck.Drive();
-            truck.Turn("left");
-            truck.Stop();
+            foreach (IGas gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
         }
     }
 }
